@@ -15,6 +15,7 @@ See dblatex(1) -p option.
   <xsl:param name="table.in.float">0</xsl:param>
   <xsl:param name="monoseq.hyphenation">0</xsl:param>
   <xsl:param name="latex.output.revhistory">1</xsl:param>
+  <xsl:param name="literal.class">normal</xsl:param>
 
   <!-- This doesn't work, don't know why, see:
   http://dblatex.sourceforge.net/html/manual/apas03.html
@@ -40,17 +41,6 @@ figure,table,equation,example
   </xsl:param>
   -->
   <xsl:param name="doc.toc.show">1</xsl:param>
-
-  <!--
-    Override default literallayout template.
-    See `./dblatex/dblatex-readme.txt`.
-  -->
-  <xsl:template match="address|literallayout[@class!='monospaced']">
-    <xsl:text>\begin{alltt}</xsl:text>
-    <xsl:text>&#10;\normalfont{}&#10;</xsl:text>
-    <xsl:apply-templates/>
-    <xsl:text>&#10;\end{alltt}</xsl:text>
-  </xsl:template>
 
   <xsl:template match="processing-instruction('asciidoc-pagebreak')">
     <!-- force hard pagebreak, varies from 0(low) to 4(high) -->
